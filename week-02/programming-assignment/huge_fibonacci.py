@@ -5,26 +5,24 @@ import sys
 
 def huge_fibonacci(n, m):
     if n > m:
-        p = pisano_period_len(m)
+        p = pisano_period(m)
         ans = fibonacci(n % p) % m
         return ans
     else:
         return fibonacci(n) % m
 
 
-def pisano_period_len(m):
+def pisano_period(m):
     if m < 2:
         raise Exception("pisano period requires m >= 2")
 
     i = 2
-    j = 0
-    k = 1
+    j, k = 0, 1
 
     while True:
-        p = j + k
-        j, k = k, p
-        if p % m == 0 and (j + k) % m == 1:
-            return i
+        j, k = k % m, (j + k) % m
+        if j == 0 and k == 1:
+            return i - 1
         i += 1
 
 
