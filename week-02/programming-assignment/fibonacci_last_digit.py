@@ -11,10 +11,10 @@ def fibonacci_last_digit(n):
     j, k = 0, 1
 
     while i < n + 1:
-        j, k = k, j + k
+        j, k = k % 10, (j + k) % 10
         i += 1
 
-    return k % 10
+    return k
 
 
 if __name__ == '__main__':
